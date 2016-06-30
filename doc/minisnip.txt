@@ -1,0 +1,38 @@
+*minisnip.txt*  super lightweight snippet manager
+
+Author:  Keyboard Fire <andy@keyboardfire.com>
+License: MIT
+
+                               _       _           _        ~
+                     _ __ ___ (_)_ __ (_)___ _ __ (_)_ __   ~
+                    | '_ ` _ \| | '_ \| / __| '_ \| | '_ \  ~
+                    | | | | | | | | | | \__ \ | | | | |_) | ~
+                    |_| |_| |_|_|_| |_|_|___/_| |_|_| .__/  ~
+                                                    |_|     ~
+
+1. Overview                    |minisnip|
+2. Mappings                    |minisnip-mappings|
+3. Configuration               |minisnip-configuration|
+
+===============================================================================
+OVERVIEW                                                             *minisnip*
+
+Minisnip is a tiny plugin that allows you to quickly insert "templates" into
+files. Among all the other snippet plugins out there, the primary goal of
+minisnip is to be as minimal and lightweight as possible.
+
+To get started with minisnip, create a directory called `~/.vim/minisnip`.
+Then placing a file called `foo` inside of it will create the `foo` snippet,
+which you can access by typing  foo<Tab>  in insert mode.
+
+===============================================================================
+MAPPINGS                                                    *minisnip-mappings*
+
+                    *minisnip_<Tab>*
+<Tab>               In insert mode, expand a mapping or go to the next
+                    placeholder and enter select mode.
+
+===============================================================================
+CONFIGURATION                                          *minisnip-configuration*
+
+No configuration variables yet... (todo).
