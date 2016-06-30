@@ -1,6 +1,6 @@
 function! ExpandSnippet()
     normal! ms"syiw`s
-    let l:snippetfile = "~/.vim/minisnip/" . @s
+    let l:snippetfile = $HOME . "/.vim/minisnip/" . @s
     if filereadable(l:snippetfile)
         normal! "_diw
         execute "read " . l:snippetfile
