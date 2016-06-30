@@ -12,7 +12,7 @@ function! ExpandSnippet()
             keeppatterns execute "normal! /{{{}}}\<cr>"
             execute "normal! gn\<C-g>"
         catch
-            execute "normal! a\<tab>"
+            execute "normal! gi\<tab>"
             call feedkeys("a", "n")
         endtry
     endif
