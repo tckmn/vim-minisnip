@@ -1,6 +1,8 @@
+let g:minisnip_dir = get(g:, "minisnip_dir", $HOME . "/.vim/minisnip")
+
 function! ExpandSnippet()
     normal! ms"syiw`s
-    let l:snippetfile = $HOME . "/.vim/minisnip/" . @s
+    let l:snippetfile = g:minisnip_dir . "/" . @s
     if filereadable(l:snippetfile)
         normal! "_diw
         execute "read " . l:snippetfile
