@@ -6,7 +6,7 @@ let g:minisnip_evalmarker = get(g:, 'minisnip_evalmarker', '~')
 
 let s:delimpat = '\V' . g:minisnip_startdelim . '\.\{-}' . g:minisnip_enddelim
 
-function! ExpandSnippet()
+function! Minisnip()
     normal! ms"syiw`s
 
     let l:snippetfile = g:minisnip_dir . '/' . @s
@@ -53,5 +53,5 @@ function! SelectPlaceholder()
     endif
 endfunction
 
-execute 'inoremap ' . g:minisnip_trigger . ' x<bs><esc>:call ExpandSnippet()<cr>'
-execute 'snoremap ' . g:minisnip_trigger . ' <esc>:call ExpandSnippet()<cr>'
+execute 'inoremap ' . g:minisnip_trigger . ' x<bs><esc>:call Minisnip()<cr>'
+execute 'snoremap ' . g:minisnip_trigger . ' <esc>:call Minisnip()<cr>'
