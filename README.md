@@ -1,9 +1,9 @@
-                               _       _           _
-                     _ __ ___ (_)_ __ (_)___ _ __ (_)_ __
-                    | '_ ` _ \| | '_ \| / __| '_ \| | '_ \
-                    | | | | | | | | | | \__ \ | | | | |_) |
-                    |_| |_| |_|_|_| |_|_|___/_| |_|_| .__/
-                                                    |_|
+               _       _           _
+     _ __ ___ (_)_ __ (_)___ _ __ (_)_ __
+    | '_ ` _ \| | '_ \| / __| '_ \| | '_ \
+    | | | | | | | | | | \__ \ | | | | |_) |
+    |_| |_| |_|_|_| |_|_|___/_| |_|_| .__/
+                                    |_|
 
 Minisnip is a tiny plugin that allows you to quickly insert "templates" into
 files. Among all the other snippet plugins out there, the primary goal of
