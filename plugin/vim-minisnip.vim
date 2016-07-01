@@ -54,3 +54,4 @@ function! SelectPlaceholder()
 endfunction
 
 execute 'inoremap ' . g:minisnip_trigger . ' x<bs><esc>:call ExpandSnippet()<cr>'
+execute 'snoremap ' . g:minisnip_trigger . ' <esc>:call ExpandSnippet()<cr>'

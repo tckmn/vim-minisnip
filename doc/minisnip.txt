@@ -34,8 +34,9 @@ MAPPINGS                                                    *minisnip-mappings*
 
 -------------------------------------------------------------------------------
                     *minisnip_<Tab>*
-<Tab>               In insert mode, expand a mapping or go to the next
+<Tab>               In insert mode, expand a mapping or jump to the next
                     placeholder and enter select mode.
+                    In select mode, jump to the next placeholder.
 
 ===============================================================================
 CONFIGURATION                                          *minisnip-configuration*
