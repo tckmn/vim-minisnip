@@ -86,3 +86,21 @@ Marks a template as meant to be executed as vimscript. With the default value,
 this looks something like: >
     It has been {{+~localtime()+}} seconds since the Unix epoch
 <
+
+-------------------------------------------------------------------------------
+                                                   *'g:minisnip_backrefmarker'*
+Default: '\\~'
+
+When this is present, followed by a single digit `n`, in a placeholder that
+also starts with |'g:minisnip_evalmarker'|, it will be replaced with the `n`th
+to last previous placeholder value, surrounded by quotes. Here is an example
+of how it can be used: >
+    #ifndef {{+INCLUDE_GUARD+}}
+    #define {{+~\~1+}}
+
+    {{++}}
+
+    #endif
+<
+This will automatically fill the `#define` line with the value entered on the
+`#ifndef` line upon jumping to it.
