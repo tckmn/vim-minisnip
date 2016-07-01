@@ -38,11 +38,11 @@ CONFIGURATION                                          *minisnip-configuration*
 
 -------------------------------------------------------------------------------
                                                              *'g:minisnip_dir'*
-Default: $HOME . "/.vim/minisnip"
+Default: $HOME . '/.vim/minisnip'
 
 This allows you to specify where minisnip looks for snippet files. Add this
 line to your `.vimrc`: >
-    let g:minisnip_dir = "/path/to/directory"
+    let g:minisnip_dir = '/path/to/directory'
 <
 
 -------------------------------------------------------------------------------
