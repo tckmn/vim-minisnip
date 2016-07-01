@@ -25,6 +25,10 @@ To get started with minisnip, create a directory called `~/.vim/minisnip`.
 Then placing a file called `foo` inside of it will create the `foo` snippet,
 which you can access by typing  foo<Tab>  in insert mode.
 
+Filetype-aware snippets are also available. For example, a file called
+`_java_main` will create a `main` snippet only when |filetype|=java, allowing
+you to add ex. a `_c_main` snippet and so on.
+
 ===============================================================================
 MAPPINGS                                                    *minisnip-mappings*
 

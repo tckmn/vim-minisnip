@@ -9,9 +9,15 @@ let s:delimpat = '\V' . g:minisnip_startdelim . '\.\{-}' . g:minisnip_enddelim
 function! ExpandSnippet()
     normal! ms"syiw`s
     let l:snippetfile = g:minisnip_dir . '/' . @s
+    let l:ft_snippetfile = g:minisnip_dir . '/_' . &filetype . '_' . @s
     if filereadable(l:snippetfile)
         normal! "_diw
         execute 'read ' . l:snippetfile
+        normal! kJ
+        call SelectPlaceholder()
+    elseif filereadable(l:ft_snippetfile)
+        normal! "_diw
+        execute 'read ' . l:ft_snippetfile
         normal! kJ
         call SelectPlaceholder()
     else
