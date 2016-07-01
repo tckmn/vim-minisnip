@@ -44,3 +44,13 @@ This allows you to specify where minisnip looks for snippet files. Add this
 line to your `.vimrc`: >
     let g:minisnip_dir = "/path/to/directory"
 <
+
+-------------------------------------------------------------------------------
+                                                         *'g:minisnip_trigger'*
+Default: '<Tab>'
+
+Specifies which key expands snippets and jumps to the next placeholder. This
+should be specified in the same format as you would use for a |:map|. For
+example: >
+    let g:minisnip_trigger = '<C-j>'
+<

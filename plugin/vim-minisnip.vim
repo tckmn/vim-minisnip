@@ -1,4 +1,5 @@
 let g:minisnip_dir = get(g:, "minisnip_dir", $HOME . "/.vim/minisnip")
+let g:minisnip_trigger = get(g:, "minisnip_trigger", "<Tab>")
 
 function! ExpandSnippet()
     normal! ms"syiw`s
@@ -12,10 +13,11 @@ function! ExpandSnippet()
             keeppatterns execute "normal! /{{{}}}\<cr>"
             execute "normal! gn\<C-g>"
         catch
-            execute "normal! gi\<tab>"
+            execute "normal! gi" .
+                \eval('"' . escape(g:minisnip_trigger, '\"<') . '"')
             call feedkeys("a", "n")
         endtry
     endif
 endfunction
 
-inoremap <tab> x<bs><esc>:call ExpandSnippet()<cr>
+execute "inoremap " . g:minisnip_trigger . " x<bs><esc>:call ExpandSnippet()<cr>"
