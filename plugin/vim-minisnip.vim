@@ -1,5 +1,9 @@
 let g:minisnip_dir = get(g:, 'minisnip_dir', $HOME . '/.vim/minisnip')
 let g:minisnip_trigger = get(g:, 'minisnip_trigger', '<Tab>')
+let g:minisnip_startdelim = get(g:, 'minisnip_startdelim', '{{+')
+let g:minisnip_enddelim = get(g:, 'minisnip_enddelim', '+}}')
+
+let s:delimpat = '\V' . g:minisnip_startdelim . '\.\{-}' . g:minisnip_enddelim
 
 function! ExpandSnippet()
     normal! ms"syiw`s
@@ -7,16 +11,29 @@ function! ExpandSnippet()
     if filereadable(l:snippetfile)
         normal! "_diw
         execute 'read ' . l:snippetfile
-        keeppatterns execute "normal! kJ/{{{}}}\<cr>gn\<C-g>"
+        normal! kJ
+        call SelectPlaceholder()
     else
         try
-            keeppatterns execute "normal! /{{{}}}\<cr>"
-            execute "normal! gn\<C-g>"
+            call SelectPlaceholder()
         catch
             execute 'normal! gi' .
                 \eval('"' . escape(g:minisnip_trigger, '\"<') . '"')
             call feedkeys('a', 'n')
         endtry
+    endif
+endfunction
+
+function! SelectPlaceholder()
+    keeppatterns execute 'normal! /' . s:delimpat . "\<cr>"
+    keeppatterns execute 'normal! gn"sy'
+    let @s=substitute(@s, '\V' . g:minisnip_startdelim, '', '')
+    let @s=substitute(@s, '\V' . g:minisnip_enddelim, '', '')
+    if empty(@s)
+        normal! gvd
+        call feedkeys('a', 'n')
+    else
+        execute "normal! gv\"spgv\<C-g>"
     endif
 endfunction
 

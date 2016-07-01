@@ -54,3 +54,21 @@ should be specified in the same format as you would use for a |:map|. For
 example: >
     let g:minisnip_trigger = '<C-j>'
 <
+
+-------------------------------------------------------------------------------
+                                                       *'g:minisnip_startdelim'*
+                                                         *'g:minisnip_enddelim'*
+Defaults: '{{+', '+}}'
+
+The start and end delimeters of the placeholder string to use. For example,
+with the default values, a sample snippet could look like this: >
+    <!DOCTYPE html>
+    <html lang='en'>
+        <head>
+            <title>{{+default title+}}</title>
+        </head>
+        <body>
+            {{++}}
+        </body>
+    </html>
+<
