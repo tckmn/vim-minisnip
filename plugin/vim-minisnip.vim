@@ -42,7 +42,7 @@ function! Minisnip()
 endfunction
 
 function! SelectPlaceholder()
-    keeppatterns execute 'normal! /' . s:delimpat . "\<cr>"
+    keeppatterns execute 'normal! /' . s:delimpat . "/e\<cr>"
     keeppatterns execute 'normal! gn"sy'
 
     call add(s:placeholder_texts, s:placeholder_text)
