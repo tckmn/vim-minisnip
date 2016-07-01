@@ -2,6 +2,7 @@ let g:minisnip_dir = get(g:, 'minisnip_dir', $HOME . '/.vim/minisnip')
 let g:minisnip_trigger = get(g:, 'minisnip_trigger', '<Tab>')
 let g:minisnip_startdelim = get(g:, 'minisnip_startdelim', '{{+')
 let g:minisnip_enddelim = get(g:, 'minisnip_enddelim', '+}}')
+let g:minisnip_evalmarker = get(g:, 'minisnip_evalmarker', '~')
 
 let s:delimpat = '\V' . g:minisnip_startdelim . '\.\{-}' . g:minisnip_enddelim
 
@@ -27,8 +28,15 @@ endfunction
 function! SelectPlaceholder()
     keeppatterns execute 'normal! /' . s:delimpat . "\<cr>"
     keeppatterns execute 'normal! gn"sy'
+
     let @s=substitute(@s, '\V' . g:minisnip_startdelim, '', '')
     let @s=substitute(@s, '\V' . g:minisnip_enddelim, '', '')
+
+    if @s =~ '\V\^' . g:minisnip_evalmarker
+        let @s=substitute(@s, '\V\^' . g:minisnip_evalmarker, '', '')
+        let @s=eval(@s)
+    endif
+
     if empty(@s)
         normal! gvd
         call feedkeys('a', 'n')

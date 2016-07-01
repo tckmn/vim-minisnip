@@ -56,8 +56,8 @@ example: >
 <
 
 -------------------------------------------------------------------------------
-                                                       *'g:minisnip_startdelim'*
-                                                         *'g:minisnip_enddelim'*
+                                                      *'g:minisnip_startdelim'*
+                                                        *'g:minisnip_enddelim'*
 Defaults: '{{+', '+}}'
 
 The start and end delimeters of the placeholder string to use. For example,
@@ -71,4 +71,13 @@ with the default values, a sample snippet could look like this: >
             {{++}}
         </body>
     </html>
+<
+
+-------------------------------------------------------------------------------
+                                                      *'g:minisnip_evalmarker'*
+Default: '~'
+
+Marks a template as meant to be executed as vimscript. With the default value,
+this looks something like: >
+    It has been {{+~localtime()+}} seconds since the Unix epoch
 <
