@@ -17,7 +17,13 @@ Filetype-aware snippets are also available. For example, a file called
 `_java_main` will create a `main` snippet only when `filetype=java`, allowing
 you to add ex. a `_c_main` snippet and so on.
 
+Here is a demo of the basic features of minisnip:
+
 ![demo GIF 1](https://raw.githubusercontent.com/KeyboardFire/keyboardfire.github.io/master/s/vim-minisnip/demo1-s.gif)
+
+Here is another example that shows how arbitrary code can be executed from
+within a snippet, allowing dynamic snippets based on the file name or other
+conditions:
 
 ![demo GIF 2](https://raw.githubusercontent.com/KeyboardFire/keyboardfire.github.io/master/s/vim-minisnip/demo2-s.gif)
 
