@@ -53,10 +53,10 @@ function! SelectPlaceholder()
     if @s =~ '\V\^' . g:minisnip_evalmarker
         let @s=substitute(@s, '\V\^' . g:minisnip_evalmarker, '', '')
         let @s=substitute(@s, '\V' . g:minisnip_backrefmarker . '\(\d\)',
-            \"\\=\"'\" . get(
+            \"\\=\"'\" . substitute(get(
             \    s:placeholder_texts,
             \    len(s:placeholder_texts) - str2nr(submatch(1)), ''
-            \) . \"'\"", 'g')
+            \), \"'\", \"''\", 'g') . \"'\"", 'g')
         let @s=eval(@s)
     endif
 
