@@ -7,25 +7,20 @@ let g:minisnip_backrefmarker = get(g:, 'minisnip_backrefmarker', '\\~')
 
 let s:delimpat = '\V' . g:minisnip_startdelim . '\.\{-}' . g:minisnip_enddelim
 
-let s:placeholder_texts = []
-let s:placeholder_text = ''
-
 function! Minisnip()
     normal! ms"syiw`s
 
     let l:snippetfile = g:minisnip_dir . '/' . @s
     let l:ft_snippetfile = g:minisnip_dir . '/_' . &filetype . '_' . @s
+    if filereadable(l:ft_snippetfile)
+        let l:snippetfile = l:ft_snippetfile
+    endif
 
     if filereadable(l:snippetfile)
         let s:placeholder_texts = []
+        let s:placeholder_text = ''
         normal! "_diw
         execute 'read ' . escape(l:snippetfile, '#%')
-        normal! kJ
-        call SelectPlaceholder()
-    elseif filereadable(l:ft_snippetfile)
-        let s:placeholder_texts = []
-        normal! "_diw
-        execute 'read ' . escape(l:ft_snippetfile, '#%')
         normal! kJ
         call SelectPlaceholder()
     else
