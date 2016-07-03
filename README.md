@@ -17,8 +17,8 @@ Filetype-aware snippets are also available. For example, a file called
 `_java_main` will create a `main` snippet only when `filetype=java`, allowing
 you to add ex. a `_c_main` snippet and so on.
 
-![demo GIF 1](http://keyboardfire.com/s/vim-minisnip/demo1-s.gif)
+![demo GIF 1](https://raw.githubusercontent.com/KeyboardFire/keyboardfire.github.io/master/s/vim-minisnip/demo1-s.gif)
 
-![demo GIF 2](http://keyboardfire.com/s/vim-minisnip/demo2-s.gif)
+![demo GIF 2](https://raw.githubusercontent.com/KeyboardFire/keyboardfire.github.io/master/s/vim-minisnip/demo2-s.gif)
 
 Minisnip is licensed under MIT.
