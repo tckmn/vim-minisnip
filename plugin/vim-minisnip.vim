@@ -68,5 +68,5 @@ function! SelectPlaceholder()
     endif
 endfunction
 
-execute 'inoremap ' . g:minisnip_trigger . ' x<bs><esc>:call Minisnip()<cr>'
-execute 'snoremap ' . g:minisnip_trigger . ' <esc>:call Minisnip()<cr>'
+execute 'inoremap ' . g:minisnip_trigger . ' x<bs><esc>:silent! call Minisnip()<cr>'
+execute 'snoremap ' . g:minisnip_trigger . ' <esc>:silent! call Minisnip()<cr>'
