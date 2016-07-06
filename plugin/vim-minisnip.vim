@@ -16,7 +16,8 @@ function! Minisnip()
         let l:snippetfile = l:ft_snippetfile
     endif
 
-    if filereadable(l:snippetfile)
+    if (getline('.') =~# ('\v%' . (col('.') + 1) . 'c( |$)')) &&
+            \filereadable(l:snippetfile)
         let s:placeholder_texts = []
         let s:placeholder_text = ''
         normal! "_diw
