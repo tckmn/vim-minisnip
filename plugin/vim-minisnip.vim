@@ -7,7 +7,7 @@ let g:minisnip_backrefmarker = get(g:, 'minisnip_backrefmarker', '\\~')
 
 let s:delimpat = '\V' . g:minisnip_startdelim . '\.\{-}' . g:minisnip_enddelim
 
-function! Minisnip()
+function! <SID>Minisnip()
     normal! ms"syiw`s
 
     let l:snippetfile = g:minisnip_dir . '/' . @s
@@ -23,12 +23,12 @@ function! Minisnip()
         normal! "_diw
         execute 'read ' . escape(l:snippetfile, '#%')
         normal! kJ
-        call SelectPlaceholder()
+        call s:SelectPlaceholder()
     else
         normal! ms"syv`<`s
         let s:placeholder_text = @s
         try
-            call SelectPlaceholder()
+            call s:SelectPlaceholder()
         catch
             execute 'normal! gi' .
                 \eval('"' . escape(g:minisnip_trigger, '\"<') . '"')
@@ -37,7 +37,7 @@ function! Minisnip()
     endif
 endfunction
 
-function! SelectPlaceholder()
+function! s:SelectPlaceholder()
     keeppatterns execute 'normal! /' . s:delimpat . "/e\<cr>"
     keeppatterns execute 'normal! gn"sy'
 
@@ -64,5 +64,5 @@ function! SelectPlaceholder()
     endif
 endfunction
 
-execute 'inoremap ' . g:minisnip_trigger . ' x<bs><esc>:silent! call Minisnip()<cr>'
-execute 'snoremap ' . g:minisnip_trigger . ' <esc>:silent! call Minisnip()<cr>'
+execute 'inoremap ' . g:minisnip_trigger . ' x<bs><esc>:silent! call <SID>Minisnip()<cr>'
+execute 'snoremap ' . g:minisnip_trigger . ' <esc>:silent! call <SID>Minisnip()<cr>'
