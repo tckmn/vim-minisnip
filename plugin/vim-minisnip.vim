@@ -16,7 +16,7 @@ function! <SID>Minisnip()
         let l:snippetfile = l:ft_snippetfile
     endif
 
-    if (getline('.') =~# ('\v%' . (col('.') + 1) . 'c( |$)')) &&
+    if (getline('.') !~# ('\v%' . (col('.') + 1) . 'c\w')) &&
             \filereadable(l:snippetfile)
         let s:placeholder_texts = []
         let s:placeholder_text = ''
