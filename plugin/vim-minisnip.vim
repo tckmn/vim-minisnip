@@ -64,5 +64,10 @@ function! s:SelectPlaceholder()
     endif
 endfunction
 
-execute 'inoremap ' . g:minisnip_trigger . ' x<bs><esc>:silent! call <SID>Minisnip()<cr>'
-execute 'snoremap ' . g:minisnip_trigger . ' <esc>:silent! call <SID>Minisnip()<cr>'
+inoremap <unique> <script> <Plug>Minisnip x<bs><esc>:silent! call <SID>Minisnip()<cr>
+snoremap <unique> <script> <Plug>Minisnip <esc>:silent! call <SID>Minisnip()<cr>
+
+if !hasmapto('<Plug>Minisnip')
+    execute 'imap <unique> ' . g:minisnip_trigger . ' <Plug>Minisnip'
+    execute 'smap <unique> ' . g:minisnip_trigger . ' <Plug>Minisnip'
+endif
