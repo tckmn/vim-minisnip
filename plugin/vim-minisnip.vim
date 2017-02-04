@@ -96,10 +96,10 @@ endfunction
 " plug mappings
 " the eval/escape charade is to convert ex. <Tab> into a literal tab, first
 " making it \<Tab> and then eval'ing that surrounded by double quotes
-inoremap <unique> <script> <expr> <Plug>Minisnip <SID>ShouldTrigger() ?
+inoremap <script> <expr> <Plug>Minisnip <SID>ShouldTrigger() ?
             \"x\<bs>\<esc>:call \<SID>Minisnip()\<cr>" :
             \eval('"' . escape(g:minisnip_trigger, '\"<') . '"')
-snoremap <unique> <script> <expr> <Plug>Minisnip <SID>ShouldTrigger() ?
+snoremap <script> <expr> <Plug>Minisnip <SID>ShouldTrigger() ?
             \"\<esc>:call \<SID>Minisnip()\<cr>" :
             \eval('"' . escape(g:minisnip_trigger, '\"<') . '"')
 
