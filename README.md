@@ -9,6 +9,32 @@ Minisnip is a tiny plugin that allows you to quickly insert "templates" into
 files. Among all the other snippet plugins out there, the primary goal of
 minisnip is to be as minimal and lightweight as possible.
 
+
+## Installation
+
+Use your favourite plugin manager to install minisnip:
+
+#### [vim-plug](https://github.com/junegunn/vim-plug):
+
+```vim
+Plug 'KeyboardFire/vim-minisnip'
+```
+
+#### [Pathogen](https://github.com/tpope/vim-pathogen):
+
+```bash
+cd ~/.vim/bundle
+git clone git://github.com/KeyboardFire/vim-minisnip.git
+```
+
+#### [NeoBundle](https://github.com/Shougo/neobundle.vim)
+
+```vim
+NeoBundle 'KeyboardFire/vim-minisnip'
+```
+
+## Usage
+
 To get started with minisnip, create a directory called `~/.vim/minisnip`.
 Then placing a file called `foo` inside of it will create the `foo` snippet,
 which you can access by typing `foo<Tab>` in insert mode.
