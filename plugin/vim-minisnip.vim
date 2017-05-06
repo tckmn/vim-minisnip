@@ -46,8 +46,10 @@ function! <SID>Minisnip()
         call s:SelectPlaceholder()
     else
         " save the current placeholder's text so we can backref it
+        let l:old_s = @s
         normal! ms"syv`<`s
         let s:placeholder_text = @s
+        let @s = l:old_s
         " jump to the next placeholder
         call s:SelectPlaceholder()
     endif
@@ -55,6 +57,9 @@ endfunction
 
 " this is the function that finds and selects the next placeholder
 function! s:SelectPlaceholder()
+    " don't clobber s register
+    let l:old_s = @s
+
     " get the contents of the placeholder
     " we use /e here in case the cursor is already on it (which occurs ex.
     "   when a snippet begins with a placeholder)
@@ -91,6 +96,9 @@ function! s:SelectPlaceholder()
         " paste the placeholder's default value in and enter select mode on it
         execute "normal! gv\"spgv\<C-g>"
     endif
+
+    " restore old value of s register
+    let @s = l:old_s
 endfunction
 
 " plug mappings
