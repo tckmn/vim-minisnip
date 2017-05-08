@@ -39,7 +39,7 @@ function! <SID>Minisnip()
         " remove the snippet name
         normal! "_diw
         " insert the snippet
-        execute 'read ' . escape(s:snippetfile, '#%')
+        execute 'keepalt read ' . escape(s:snippetfile, '#%')
         " remove the empty line before the snippet
         normal! kJ
         " select the first placeholder
