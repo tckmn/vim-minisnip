@@ -91,7 +91,7 @@ function! s:SelectPlaceholder()
     if empty(@s)
         " the placeholder was empty, so just enter insert mode directly
         normal! gvd
-        call feedkeys('a', 'n')
+        call feedkeys(col('.') >= col('$') - 1 ? 'a' : 'i', 'n')
     else
         " paste the placeholder's default value in and enter select mode on it
         execute "normal! gv\"spgv\<C-g>"
