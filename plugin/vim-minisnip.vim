@@ -70,6 +70,9 @@ function! s:SelectPlaceholder()
     " save the contents of the previous placeholder (for backrefs)
     call add(s:placeholder_texts, s:placeholder_text)
 
+    " save length of entire placeholder for reference later
+    let l:slen = len(@s)
+
     " remove the start and end delimiters
     let @s=substitute(@s, '\V' . g:minisnip_startdelim, '', '')
     let @s=substitute(@s, '\V' . g:minisnip_enddelim, '', '')
@@ -91,7 +94,7 @@ function! s:SelectPlaceholder()
     if empty(@s)
         " the placeholder was empty, so just enter insert mode directly
         normal! gvd
-        call feedkeys(col('.') >= col('$') - 1 ? 'a' : 'i', 'n')
+        call feedkeys(col("'>") - l:slen >= col('$') - 1 ? 'a' : 'i', 'n')
     else
         " paste the placeholder's default value in and enter select mode on it
         execute "normal! gv\"spgv\<C-g>"
