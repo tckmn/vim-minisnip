@@ -27,4 +27,8 @@ conditions:
 
 ![demo GIF 2](https://raw.githubusercontent.com/KeyboardFire/keyboardfire.github.io/master/s/vim-minisnip/demo2-s.gif)
 
+View [the docs](doc/) to learn the snippet syntax and options.
+
+View [the examples](examples/) to see syntax examples.
+
 Minisnip is licensed under MIT.
