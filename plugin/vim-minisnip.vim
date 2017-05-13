@@ -1,5 +1,5 @@
 " set default global variable values if unspecified by user
-let g:minisnip_dir = get(g:, 'minisnip_dir', $HOME . '/.vim/minisnip')
+let g:minisnip_dir = fnamemodify(get(g:, 'minisnip_dir', '~/.vim/minisnip'), ':p')
 let g:minisnip_trigger = get(g:, 'minisnip_trigger', '<Tab>')
 let g:minisnip_startdelim = get(g:, 'minisnip_startdelim', '{{+')
 let g:minisnip_enddelim = get(g:, 'minisnip_enddelim', '+}}')
