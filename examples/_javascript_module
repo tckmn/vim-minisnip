@@ -1,0 +1,3 @@
+const {{+~expand('%:t:r')+}} = {{++}}
+
+export default {{+~\~2+}}
