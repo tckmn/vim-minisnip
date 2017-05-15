@@ -40,6 +40,8 @@ function! <SID>Minisnip()
         normal! "_diw
         " insert the snippet
         execute 'keepalt read ' . escape(s:snippetfile, '#%')
+        " format the snippet
+        normal! `[v`]=`[
         " remove the empty line before the snippet
         normal! kJ
         " select the first placeholder
@@ -65,7 +67,13 @@ function! s:SelectPlaceholder()
     "   when a snippet begins with a placeholder)
     " we also use keeppatterns to avoid clobbering the search history /
     "   highlighting all the other placeholders
-    keeppatterns execute 'normal! /' . s:delimpat . "/e\<cr>gn\"sy"
+    try
+        keeppatterns execute 'normal! /' . s:delimpat . "/e\<cr>gn\"sy"
+    catch /E486:/
+        " There's no placeholder at all, enter insert mode
+        call feedkeys('i', 'n')
+        return
+    endtry
 
     " save the contents of the previous placeholder (for backrefs)
     call add(s:placeholder_texts, s:placeholder_text)
