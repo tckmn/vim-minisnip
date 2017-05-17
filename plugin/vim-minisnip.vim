@@ -38,10 +38,13 @@ function! <SID>Minisnip()
         let s:placeholder_text = ''
         " remove the snippet name
         normal! "_diw
+        " adjust the indentation, use the current line as reference
+        let ws = matchstr(getline(line('.')), '^\s\+')
+        let lns = map(readfile(s:snippetfile), 'empty(v:val)? v:val : ws.v:val')
         " insert the snippet
-        execute 'keepalt read ' . escape(s:snippetfile, '#%')
+        call append(line('.'), lns)
         " remove the empty line before the snippet
-        normal! kJ
+        normal! J
         " select the first placeholder
         call s:SelectPlaceholder()
     else
@@ -65,7 +68,13 @@ function! s:SelectPlaceholder()
     "   when a snippet begins with a placeholder)
     " we also use keeppatterns to avoid clobbering the search history /
     "   highlighting all the other placeholders
-    keeppatterns execute 'normal! /' . s:delimpat . "/e\<cr>gn\"sy"
+    try
+        silent keeppatterns execute 'normal! /' . s:delimpat . "/e\<cr>gn\"sy"
+    catch /E486:/
+        " There's no placeholder at all, enter insert mode
+        call feedkeys('i', 'n')
+        return
+    endtry
 
     " save the contents of the previous placeholder (for backrefs)
     call add(s:placeholder_texts, s:placeholder_text)
