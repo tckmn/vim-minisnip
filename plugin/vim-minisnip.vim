@@ -32,6 +32,10 @@ endfunction
 
 " main function, called on press of Tab (or whatever key Minisnip is bound to)
 function! <SID>Minisnip()
+    " save the current foldmethod, and set foldmethod temporarily to 'manual'
+    " (in order to avoid fold-updates during snippet-expansion)
+    let w:old_fdm = &foldmethod
+    setlocal foldmethod=manual
     if exists("s:snippetfile")
         " reset placeholder text history (for backrefs)
         let s:placeholder_texts = []
@@ -53,6 +57,8 @@ function! <SID>Minisnip()
         " jump to the next placeholder
         call s:SelectPlaceholder()
     endif
+    " restore the foldmethod
+    let &foldmethod = w:old_fdm
 endfunction
 
 " this is the function that finds and selects the next placeholder
