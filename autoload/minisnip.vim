@@ -1,15 +1,4 @@
-" set default global variable values if unspecified by user
-let g:minisnip_dir = fnamemodify(get(g:, 'minisnip_dir', '~/.vim/minisnip'), ':p')
-let g:minisnip_trigger = get(g:, 'minisnip_trigger', '<Tab>')
-let g:minisnip_startdelim = get(g:, 'minisnip_startdelim', '{{+')
-let g:minisnip_enddelim = get(g:, 'minisnip_enddelim', '+}}')
-let g:minisnip_evalmarker = get(g:, 'minisnip_evalmarker', '~')
-let g:minisnip_backrefmarker = get(g:, 'minisnip_backrefmarker', '\\~')
-
-" this is the pattern used to find placeholders
-let s:delimpat = '\V' . g:minisnip_startdelim . '\.\{-}' . g:minisnip_enddelim
-
-function! <SID>ShouldTrigger()
+function! minisnip#ShouldTrigger()
     silent! unlet! s:snippetfile
     let l:cword = matchstr(getline('.'), '\v\w+%' . col('.') . 'c')
 
@@ -27,11 +16,11 @@ function! <SID>ShouldTrigger()
         return 1
     endif
 
-    return search(s:delimpat, 'e')
+    return search(g:minisnip_delimpat, 'e')
 endfunction
 
 " main function, called on press of Tab (or whatever key Minisnip is bound to)
-function! <SID>Minisnip()
+function! minisnip#Minisnip()
     if exists("s:snippetfile")
         " reset placeholder text history (for backrefs)
         let s:placeholder_texts = []
@@ -103,19 +92,3 @@ function! s:SelectPlaceholder()
     " restore old value of s register
     let @s = l:old_s
 endfunction
-
-" plug mappings
-" the eval/escape charade is to convert ex. <Tab> into a literal tab, first
-" making it \<Tab> and then eval'ing that surrounded by double quotes
-inoremap <script> <expr> <Plug>Minisnip <SID>ShouldTrigger() ?
-            \"x\<bs>\<esc>:call \<SID>Minisnip()\<cr>" :
-            \eval('"' . escape(g:minisnip_trigger, '\"<') . '"')
-snoremap <script> <expr> <Plug>Minisnip <SID>ShouldTrigger() ?
-            \"\<esc>:call \<SID>Minisnip()\<cr>" :
-            \eval('"' . escape(g:minisnip_trigger, '\"<') . '"')
-
-" add the default mappings if the user hasn't defined any
-if !hasmapto('<Plug>Minisnip')
-    execute 'imap <unique> ' . g:minisnip_trigger . ' <Plug>Minisnip'
-    execute 'smap <unique> ' . g:minisnip_trigger . ' <Plug>Minisnip'
-endif
