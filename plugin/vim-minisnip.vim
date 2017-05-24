@@ -69,11 +69,15 @@ function! s:SelectPlaceholder()
     " we also use keeppatterns to avoid clobbering the search history /
     "   highlighting all the other placeholders
     try
+        " gn misbehaves when 'wrapscan' isn't set (see vim's #1683)
+        let [l:ws, &ws] = [&ws, 1]
         silent keeppatterns execute 'normal! /' . s:delimpat . "/e\<cr>gn\"sy"
     catch /E486:/
         " There's no placeholder at all, enter insert mode
         call feedkeys('i', 'n')
         return
+    finally
+        let &ws = l:ws
     endtry
 
     " save the contents of the previous placeholder (for backrefs)
